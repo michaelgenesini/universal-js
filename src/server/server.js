@@ -3,18 +3,24 @@ import express from 'express'
 import colors from 'colors'
 import path from 'path'
 
+// Server Side Rendering
+import {
+  renderPage,
+  renderDevPage
+} from './ssr.js'
+
 const PROD = process.env.NODE_ENV === 'production'
 
 const app = express()
 
 if (PROD) {
-  // app.use('/static', express.static('build'))
-  // app.get('*', renderPage)
+  app.use('/public', express.static('build'))
+  app.get('*', renderPage)
 } else {
-  // const HMR = require('./hmr.js')
+  const HMR = require('./hmr.js')
   // Hot Module Reloading
-  // HMR(app)
-  // app.get('*', renderDevPage)
+  HMR(app)
+  app.get('*', renderDevPage)
 }
 
 // catch 404 and forward to error handler
@@ -42,5 +48,5 @@ const server = http.createServer(app);
 
 server.listen(8080, () => {
    const address = server.address()
-   console.log(`${'>>>'.cyan} ${'Listening on:'.rainbow} ${'localhost::'.trap.magenta}${`${address.port}`.green}`)
+   console.log(`${'>>>'.cyan} ${'Listening on:'.rainbow} ${'localhost::'.magenta}${`${address.port}`.green}`)
  })

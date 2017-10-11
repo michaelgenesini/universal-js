@@ -8,6 +8,7 @@ const {
 
 module.exports = new Config().extend('config/webpack.default.config.js').merge({
     entry: {
+		main: './client/index.js',
 		vendors: ['react']
 	},
 	resolve: {

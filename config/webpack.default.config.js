@@ -16,7 +16,7 @@ const HtmlCriticalPlugin = require("html-critical-webpack-plugin")
 const {
 	root,
 	src,
-	public,
+	ppublic,
 	dist,
 	exclude,
 	browserList
@@ -40,7 +40,7 @@ module.exports = new Config().merge({
 	},
 	// Dev server configuration
 	devServer: {
-		contentBase: public,
+		contentBase: ppublic,
 		// compress: process.env.production ? true : false, // Enable gzip only in produciton
 		port: process.env.APP_PORT,
 		host: process.env.APP_HOST,
@@ -161,22 +161,22 @@ module.exports = new Config().merge({
 			}
 		}),
 		// Inject bundles to index.html
-		new HtmlWebpackPlugin({
-			inject: true,
-			template: resolve(__dirname, '../public/index.html'),
-			minify: {
-				removeComments: process.env.production,
-				collapseWhitespace: process.env.production,
-				removeRedundantAttributes: process.env.production,
-				useShortDoctype: process.env.production,
-				removeEmptyAttributes: process.env.production,
-				removeStyleLinkTypeAttributes: process.env.production,
-				keepClosingSlash: process.env.production,
-				minifyJS: process.env.production,
-				minifyCSS: process.env.production,
-				minifyURLs: process.env.production
-			}
-		}),
+		// new HtmlWebpackPlugin({
+		// 	inject: true,
+		// 	template: resolve(__dirname, '../public/index.html'),
+		// 	minify: {
+		// 		removeComments: process.env.production,
+		// 		collapseWhitespace: process.env.production,
+		// 		removeRedundantAttributes: process.env.production,
+		// 		useShortDoctype: process.env.production,
+		// 		removeEmptyAttributes: process.env.production,
+		// 		removeStyleLinkTypeAttributes: process.env.production,
+		// 		keepClosingSlash: process.env.production,
+		// 		minifyJS: process.env.production,
+		// 		minifyCSS: process.env.production,
+		// 		minifyURLs: process.env.production
+		// 	}
+		// }),
 		// Clean dist folder and exclude some files
 		new CleanWebpackPlugin([
 			dist

@@ -4,7 +4,7 @@ module.exports = {
 
 	root: resolve(__dirname, '..'),
 	src: resolve(__dirname, '../src'),
-	public: resolve(__dirname, '../public'),
+	ppublic: resolve(__dirname, '../public'),
 	dist: resolve(__dirname, '../dist'),
 	exclude: /node_modules/,
 	browserList: [
