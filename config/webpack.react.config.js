@@ -45,9 +45,14 @@ module.exports = new Config().extend({
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [
-							['es2015', { modules: false }],
-							'react'
+						"presets": [
+							"react",
+							["es2015", { "modules": false }],
+							"stage-0"
+						],
+						"plugins": [
+							"transform-decorators-legacy",
+							"react-hot-loader/babel"
 						]
 					}
 				}],
