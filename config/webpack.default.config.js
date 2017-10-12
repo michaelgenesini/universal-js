@@ -150,16 +150,16 @@ module.exports = new Config().merge({
 	},
 	// Plugins
 	plugins: [
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': process.env.production ? JSON.stringify('production') : JSON.stringify('development')
-		}),
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendors',
-			minChunks: function (module) {
-				// this assumes your vendor imports exist in the node_modules directory
-				return module.context && module.context.indexOf('node_modules') !== -1;
-			}
-		}),
+		// new webpack.DefinePlugin({
+		// 	'process.env.NODE_ENV': process.env.production ? JSON.stringify('production') : JSON.stringify('development')
+		// }),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	name: 'vendors',
+		// 	minChunks: function (module) {
+		// 		// this assumes your vendor imports exist in the node_modules directory
+		// 		return module.context && module.context.indexOf('node_modules') !== -1;
+		// 	}
+		// }),
 		// Inject bundles to index.html
 		// new HtmlWebpackPlugin({
 		// 	inject: true,
@@ -206,9 +206,9 @@ module.exports = new Config().merge({
 			new ExtractText('[name].[contenthash:8].css'),
 			new BabiliPlugin()
 		]),
-		...(process.env.analyzing ? [
-			new BundleAnalyzerPlugin()
-		] : [])
+		// ...(process.env.analyzing ? [
+		// 	new BundleAnalyzerPlugin()
+		// ] : [])
 	],
 	// We generate sourcemaps in production. This is slow but gives good results.
 	// You can exclude the *.map files from the build during deployment.

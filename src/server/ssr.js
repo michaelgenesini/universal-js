@@ -11,6 +11,9 @@ import { renderToString } from 'react-dom/server'
 // import createStore from 'universal/redux/createStore.js'
 // import createHistory from 'history/createMemoryHistory'
 
+import { DATA } from '../universal'
+const store = DATA
+
 // Components
 import Html from './html.js'
 
@@ -31,8 +34,7 @@ function renderApp(url, res, store, assets) {
 
 export const renderPage = function (req, res) {
     // const history = createHistory( )
-    // const store  = createStore(history)
-    const store = {}
+    // const store = createStore(history)
 
     const assets = require('../../build/assets.json')
 
@@ -41,13 +43,16 @@ export const renderPage = function (req, res) {
     //     'utf-8'
     // )
 
+
     renderApp(req.url, res, store, assets)
 }
 
 export const renderDevPage = function (req, res) {
     // const history =  createHistory( )
     // const store   = createStore(history)
-    const store = {}
+
+    const store = DATA
+    console.log(req.url, store)
     renderApp(req.url, res, store)
 }
 

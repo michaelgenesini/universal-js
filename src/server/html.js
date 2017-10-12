@@ -18,6 +18,7 @@ export default class Html extends Component {
         const {
             title,
             assets,
+            store,
             url,
             context
         } = this.props
@@ -28,10 +29,8 @@ export default class Html extends Component {
             vendor
         } = assets || {}
 
-        let state = {}
-
-        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`;
-        const Layout =  PROD ? require( '../../build/prerender.js') : () => {};
+        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store)}`;
+        const Layout = PROD ? require( '../../build/prerender.js') : () => {};
 
         const root = PROD && renderToString(
             <Provider store={store}>
@@ -47,14 +46,14 @@ export default class Html extends Component {
                 <meta charSet="utf-8"/>
                 <title>{title}</title>
 
-                {PROD && <link rel="stylesheet" href="/static/prerender.css" type="text/css" />}
+                { PROD && <link rel="stylesheet" href="/static/prerender.css" type="text/css" /> }
                 </head>
                 <body>
-                <script dangerouslySetInnerHTML={{__html: initialState}} />
-                {PROD ? <div id="root" dangerouslySetInnerHTML={{__html: root}}></div> : <div id="root"></div>}
-                {PROD && <script dangerouslySetInnerHTML={{__html: manifest.text}}/>}
-                {PROD && <script src={vendor.js}/>}
-                <script src={PROD ? app.js : '/static/app.js'} />
+                <script dangerouslySetInnerHTML={{ __html: initialState }} />
+                { PROD ? <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div> : <div id="root"></div> }
+                { PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
+                { PROD && <script src={ vendor.js }/> }
+                <script src={ PROD ? app.js : '/static/app.js' } />
                 </body>
             </html>
         )

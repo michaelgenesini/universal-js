@@ -10,16 +10,19 @@ import {
 } from './ssr.js'
 
 const PROD = process.env.NODE_ENV === 'production'
+const PORT = process.env.APP_PORT || 3000
+const HOST = process.env.APP_HOST || '0.0.0.0'
 
 const app = express()
 
 if (PROD) {
-  app.use('/public', express.static('build'))
+  app.use('/static', express.static('dist'))
   app.get('*', renderPage)
 } else {
   const HMR = require('./hmr.js')
   // Hot Module Reloading
   HMR(app)
+  console.log('TEST')
   app.get('*', renderDevPage)
 }
 
@@ -42,11 +45,11 @@ if (!PROD) {
 app.use(function(err, req, res, next) {
   console.error('error : ', err.message)
   res.status(err.status || 500);
-});
+})
 
-const server = http.createServer(app);
+const server = http.createServer(app)
 
-server.listen(8080, () => {
-   const address = server.address()
-   console.log(`${'>>>'.cyan} ${'Listening on:'.rainbow} ${'localhost::'.magenta}${`${address.port}`.green}`)
- })
+server.listen(PORT, HOST, () => {
+  const address = server.address()
+  console.log(`${'>>>'.cyan} ${'Listening on:'.rainbow} ${'localhost:'.magenta}${`${address.port}`.green}`)
+})
