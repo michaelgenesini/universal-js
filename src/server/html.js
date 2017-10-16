@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { StaticRouter } from 'react-router'
 import { renderToString } from 'react-dom/server'
 
+import AppContainer from '../universal/routes'
+
 export default class Html extends Component {
 
     static propTypes = {
@@ -29,15 +31,13 @@ export default class Html extends Component {
             vendor
         } = assets || {}
 
-        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store)}`;
-        const Layout = PROD ? require( '../../build/prerender.js') : () => {};
+        const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store)}`
+        // const Layout = PROD ? require( '../../build/prerender.js') : () => {}
 
-        const root = PROD && renderToString(
-            <Provider store={store}>
-                <StaticRouter location={url} context={context}>
-                <Layout />
-                </StaticRouter>
-            </Provider>
+        const root = renderToString(
+            <StaticRouter location={url} context={context}>
+                <AppContainer />
+            </StaticRouter>
         )
 
         return (
@@ -45,13 +45,12 @@ export default class Html extends Component {
                 <head>
                 <meta charSet="utf-8"/>
                 <title>{title}</title>
-
                 { PROD && <link rel="stylesheet" href="/static/prerender.css" type="text/css" /> }
                 </head>
                 <body>
                 <script dangerouslySetInnerHTML={{ __html: initialState }} />
-                { PROD ? <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div> : <div id="root"></div> }
-                { PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
+                <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div>
+                { null && PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
                 { PROD && <script src={ vendor.js }/> }
                 <script src={ PROD ? app.js : '/static/app.js' } />
                 </body>

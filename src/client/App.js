@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Route } from 'react-router'
+import { Route, BrowserRouter } from 'react-router-dom'
 
-// Components
-import Routes from '@/universal/routes/Routes.js'
+import AppContainer from '@/universal/routes'
 
 export default class App extends Component {
 
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired
   }
 
   render () {
-    const {
-      history
-    } = this.props;
 
-    return <Route render={
-      ({ location }) => <Routes location={location} />
-    }/>
+    const {
+      history,
+      store
+    } = this.props
+    
+    console.log(history, store)
+
+    return <BrowserRouter>
+      <AppContainer />
+    </BrowserRouter>
   }
 }

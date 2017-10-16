@@ -9,9 +9,9 @@ function asyncRoute(getComponent) {
     }
 
     componentDidMount() {
-      if ( this.state.Component === null ) {
-        getComponent().then((Component) => {
-          this.setState({Component: Component})
+      if (this.state.Component === null) {
+        getComponent().then(Component => {
+          this.setState({ Component: Component })
         })
       }
     }
@@ -21,22 +21,22 @@ function asyncRoute(getComponent) {
         Component
       } = this.state
 
-      if ( Component ) {
-        return (<Component {...this.props} />)
+      if (Component) {
+        return <Component {...this.props} />
       }
-      return (<div>loading...</div>) // or <div /> with a loading spinner, etc..
+      return <div>loading...</div>
     }
   }
 }
 
 export const Home = asyncRoute(() => {
-  return System.import('@/universal/components/Home');
+  return System.import('../components/Pages/Home')
 })
 
 export const About = asyncRoute(() => {
-  return System.import('@/universal/components/About');
+  return System.import('../components/Pages/About')
 })
 
 export const NotFound = asyncRoute(() => {
-  return System.import('@/universal/components/NotFound');
+  return System.import('../components/Pages/NotFound')
 })

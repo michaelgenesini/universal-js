@@ -22,7 +22,6 @@ if (PROD) {
   const HMR = require('./hmr.js')
   // Hot Module Reloading
   HMR(app)
-  console.log('TEST')
   app.get('*', renderDevPage)
 }
 

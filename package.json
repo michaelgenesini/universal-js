@@ -10,6 +10,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0",
+    "react-router": "^4.2.0",
+    "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
@@ -38,6 +40,7 @@
     "html-webpack-plugin": "^2.29.0",
     "img-loader": "^2.0.0",
     "jest": "^21.2.1",
+    "nodemon": "^1.12.1",
     "postcss-loader": "^2.0.6",
     "react-router": "^4.2.0",
     "react-test-renderer": "^16.0.0",
@@ -56,7 +59,7 @@
   "scripts": {
     "test": "jest --verbose",
     "test:update": "jest --updateSnapshot",
-    "ssr:dev": "NODE_PATH=./src NODE_ENV=development node ./src/server/server.babel.js",
+    "ssr:dev": "nodemon ./src/server/server.babel.js",
     "dev:analyze": "webpack-dev-server --env.analyze --config ./config/webpack.config.js",
     "dev": "webpack-dev-server --env.development --config ./config/webpack.config.js",
     "build": "webpack --env.production --config ./config/webpack.config.js",
