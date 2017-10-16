@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Navigation from '@/universal/components/Layout/Navigation'
+import Navigation from '../../components/Layout/Navigation'
 
 class App extends Component {
 

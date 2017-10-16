@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StaticRouter } from 'react-router'
 import { renderToString } from 'react-dom/server'
-import { renderRoutes } from 'react-router-config'
 
-import { routes } from '../universal/routes/Routes'
+import AppContainer from '../universal/routes'
 
 export default class Html extends Component {
 
@@ -37,7 +36,7 @@ export default class Html extends Component {
 
         const root = renderToString(
             <StaticRouter location={url} context={context}>
-                { renderRoutes(routes) }
+                <AppContainer />
             </StaticRouter>
         )
 

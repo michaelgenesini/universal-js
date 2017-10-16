@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Route, BrowserRouter } from 'react-router-dom'
-import { renderRoutes } from 'react-router-config'
 
-import { routes } from '@/universal/routes/Routes'
+import AppContainer from '@/universal/routes'
 
 export default class App extends Component {
 
@@ -13,13 +12,16 @@ export default class App extends Component {
   }
 
   render () {
+
     const {
       history,
       store
     } = this.props
+    
+    console.log(history, store)
 
     return <BrowserRouter>
-      { renderRoutes(routes) }
+      <AppContainer />
     </BrowserRouter>
   }
 }

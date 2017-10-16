@@ -8,7 +8,6 @@ import { routes } from './Routes'
 
 // Containers
 import App from '../containers/App'
-// import PrivateRouteContainer from 'universal/containers/PrivateRoute'
 
 class Routes extends Component {
 
@@ -19,11 +18,11 @@ class Routes extends Component {
     } = this.props
 
     return (
-      <Switch>
-        <App>
+      <App>
+        <Switch>
           { renderRoutes(routes) }
-        </App>
-      </Switch>
+        </Switch>
+      </App>
     )
   }
 }
