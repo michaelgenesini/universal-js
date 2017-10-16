@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { AppContainer } from 'react-hot-loader'
 import createBrowserHistory from 'history/createBrowserHistory'
 
@@ -11,12 +11,12 @@ import { DATA } from '@/universal'
 const store = DATA
 
 const renderApp = Component => {
-    render(
-      <AppContainer>
-        <Component history={ history } store={ store } />
-      </AppContainer>,
-      document.getElementById('root')
-    )
+  hydrate(
+    <AppContainer>
+      <Component history={ history } store={ store } />
+    </AppContainer>,
+    document.getElementById('root')
+  )
 }
 
 renderApp(App)

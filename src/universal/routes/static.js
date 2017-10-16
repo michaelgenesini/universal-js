@@ -1,3 +1,3 @@
-export { default as Home } from '@/universal/components/Home'
-export { default as About } from '@/universal/components/About'
-export { default as NotFound } from '@/universal/components/NotFound'
+export { default as Home } from '../components/Pages/Home'
+export { default as About } from '../components/Pages/About'
+export { default as NotFound } from '../components/Pages/NotFound'

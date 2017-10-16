@@ -59,5 +59,6 @@ module.exports = new Config().extend({
 			'__PRODUCTION__': false,
 			'process.env.NODE_ENV': JSON.stringify('development')
 		}),
-	]
+	],
+	devtool: process.env.production ? 'source-map' : 'cheap-module-source-map'
 })

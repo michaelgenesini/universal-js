@@ -1,6 +1,6 @@
-import Home from './Home'
-import About from './About'
-import NotFound from './NotFound'
+import Home from './Pages/Home'
+import About from './Pages/About'
+import NotFound from './Pages/NotFound'
 
 export default {
   Home,

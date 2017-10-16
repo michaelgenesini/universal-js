@@ -33,10 +33,10 @@ function renderApp(url, res, store, assets) {
 }
 
 export const renderPage = function (req, res) {
-    // const history = createHistory( )
+    // const history = createHistory()
     // const store = createStore(history)
 
-    const assets = require('../../build/assets.json')
+    const assets = null;//require('../../build/assets.json')
 
     // assets.manifest.text = fs.readFileSync(
     //     join(__dirname, '..', '..', 'build', basename(assets.manifest.js)),
@@ -48,11 +48,8 @@ export const renderPage = function (req, res) {
 }
 
 export const renderDevPage = function (req, res) {
-    // const history =  createHistory( )
-    // const store   = createStore(history)
 
     const store = DATA
-    console.log(req.url, store)
     renderApp(req.url, res, store)
 }
 

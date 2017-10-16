@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Navigation from '@/universal/components/Layout/Navigation'
+
 class App extends Component {
 
   static propTypes = {
@@ -10,6 +12,7 @@ class App extends Component {
   render () {
     return (
       <div>
+        <Navigation />
         { this.props.children }
       </div>
     )

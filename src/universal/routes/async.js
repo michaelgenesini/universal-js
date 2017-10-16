@@ -30,13 +30,13 @@ function asyncRoute(getComponent) {
 }
 
 export const Home = asyncRoute(() => {
-  return System.import('@/universal/components/Home');
+  return System.import('@/universal/components/Home')
 })
 
 export const About = asyncRoute(() => {
-  return System.import('@/universal/components/About');
+  return System.import('@/universal/components/About')
 })
 
 export const NotFound = asyncRoute(() => {
-  return System.import('@/universal/components/NotFound');
+  return System.import('@/universal/components/NotFound')
 })
