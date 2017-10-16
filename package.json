@@ -58,7 +58,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --config ./config/jest.config.js",
     "test:update": "jest --updateSnapshot",
     "ssr:dev": "nodemon -w ./src/server ./src/server/server.babel.js",
     "dev:analyze": "webpack-dev-server --env.analyze --config ./config/webpack.config.js",
@@ -68,13 +68,5 @@
     "deploy": "",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "nodemonConfig": {
-    "ignore": ["dist/*"]
-  },
-  "jest":{
-    "transform": {
-      "^.+\\.js$": "<rootDir>/jest.transform.js"
-    }
   }
 }

@@ -36,7 +36,7 @@ export default class Html extends Component {
 
         const root = renderToString(
             <StaticRouter location={url} context={context}>
-                <AppContainer />
+                <AppContainer isServer={true} />
             </StaticRouter>
         )
 

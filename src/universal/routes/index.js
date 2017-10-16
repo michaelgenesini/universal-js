@@ -14,13 +14,16 @@ class Routes extends Component {
   render () {
 
     const {
-      location
+      location,
+      isServer
     } = this.props
+
+    console.log('ROUTES: ', isServer)
 
     return (
       <App>
         <Switch>
-          { renderRoutes(routes) }
+          { renderRoutes(routes(isServer)) }
         </Switch>
       </App>
     )

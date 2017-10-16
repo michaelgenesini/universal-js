@@ -17,11 +17,9 @@ export default class App extends Component {
       history,
       store
     } = this.props
-    
-    console.log(history, store)
 
     return <BrowserRouter>
-      <AppContainer />
+      <AppContainer isServer={false} />
     </BrowserRouter>
   }
 }
