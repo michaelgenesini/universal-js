@@ -36,7 +36,7 @@ export const renderPage = function (req, res) {
     // const history = createHistory()
     // const store = createStore(history)
 
-    const assets = null;//require('../../build/assets.json')
+    const assets = require('../../dist/assets.json')
 
     // assets.manifest.text = fs.readFileSync(
     //     join(__dirname, '..', '..', 'build', basename(assets.manifest.js)),

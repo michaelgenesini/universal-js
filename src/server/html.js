@@ -51,7 +51,7 @@ export default class Html extends Component {
                 <script dangerouslySetInnerHTML={{ __html: initialState }} />
                 <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div>
                 { null && PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
-                { PROD && <script src={ vendor.js }/> }
+                <script src={ PROD ? vendor.js : '/static/vendor.js' }/>
                 <script src={ PROD ? app.js : '/static/app.js' } />
                 </body>
             </html>
