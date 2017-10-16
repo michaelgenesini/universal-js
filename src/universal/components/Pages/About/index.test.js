@@ -1,7 +1,8 @@
-import React from 'react';
-import About from './';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { mount } from 'enzyme'
+
+import About from './'
 
 // it('renders correctly', () => {
 //     const wrapper = mount(
@@ -14,6 +15,6 @@ import { mount } from 'enzyme';
 it('renders correctly snapshot', () => {
   const tree = renderer.create(
      <About id="aboutid" />
-  ).toJSON();
+  ).toJSON()
   expect(tree)
-});
+})
