@@ -71,5 +71,10 @@
   },
   "nodemonConfig": {
     "ignore": ["dist/*"]
+  },
+  "jest":{
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
   }
 }
