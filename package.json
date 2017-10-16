@@ -15,6 +15,9 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.12",
+    "@storybook/addon-links": "^3.2.12",
+    "@storybook/react": "^3.2.12",
     "autoprefixer": "^7.1.2",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
@@ -30,14 +33,17 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
+    "enzyme": "^3.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-critical-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.29.0",
     "img-loader": "^2.0.0",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.1",
     "postcss-loader": "^2.0.6",
     "react-router": "^4.2.0",
+    "react-test-renderer": "^16.0.0",
     "serve": "^6.0.3",
     "style-loader": "^0.18.2",
     "styled-components": "^2.1.1",
@@ -51,12 +57,15 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "test": "",
+    "test": "jest --verbose",
+    "test:update": "jest --updateSnapshot",
     "ssr:dev": "nodemon ./src/server/server.babel.js",
     "dev:analyze": "webpack-dev-server --env.analyze --config ./config/webpack.config.js",
     "dev": "webpack-dev-server --env.development --config ./config/webpack.config.js",
     "build": "webpack --env.production --config ./config/webpack.config.js",
     "server": "serve -s dist -p 3000",
-    "deploy": ""
+    "deploy": "",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
