@@ -13,14 +13,14 @@ const HtmlCriticalPlugin = require("html-critical-webpack-plugin")
 // const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 // Configuration
+const options = require('./config')
 const {
 	root,
 	src,
-	ppublic,
 	dist,
 	exclude,
 	browserList
-} = require('./config')
+} = options
 
 module.exports = new Config().merge({
 	context: src,
@@ -40,7 +40,7 @@ module.exports = new Config().merge({
 	},
 	// Dev server configuration
 	devServer: {
-		contentBase: ppublic,
+		contentBase: options.public,
 		// compress: process.env.production ? true : false, // Enable gzip only in produciton
 		port: process.env.APP_PORT,
 		host: process.env.APP_HOST,

@@ -8,8 +8,8 @@ const {
 	root,
 	src,
 	exclude,
-	ppublic,
-	dist
+	dist,
+	babelOptions
 } = require('./config')
 
 module.exports = new Config().extend({
@@ -44,17 +44,7 @@ module.exports = new Config().extend({
 				test: /\.(js|jsx)$/,
 				use: [{
 					loader: 'babel-loader',
-					options: {
-						"presets": [
-							"react",
-							["es2015", { "modules": false }],
-							"stage-0"
-						],
-						"plugins": [
-							"transform-decorators-legacy",
-							"react-hot-loader/babel"
-						]
-					}
+					options: babelOptions
 				}],
 				exclude: exclude
 			}
