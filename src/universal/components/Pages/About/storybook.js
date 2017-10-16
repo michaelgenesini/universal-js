@@ -1,19 +1,14 @@
-import React from 'react';
-import About from './';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 
-// it('renders correctly', () => {
-//     const wrapper = mount(
-//         <About id="aboutid" />
-//     )
-//     const input = wrapper.find('#aboutid')
-//     expect(input.length).toBe(1)
-// });
+import About from './index'
 
-it('renders correctly snapshot', () => {
-  const tree = renderer.create(
-     <About id="aboutid" />
-  ).toJSON();
-  expect(tree)
-});
+const rendering = {
+    default: <About/>
+}
+
+let stories = storiesOf('About', module)
+
+stories.add('Default', () => <div>{rendering.default}</div>)
+
+export default stories
