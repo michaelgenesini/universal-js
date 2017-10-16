@@ -67,5 +67,10 @@
     "deploy": "",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "jest":{
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
   }
 }

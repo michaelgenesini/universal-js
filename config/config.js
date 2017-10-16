@@ -1,4 +1,5 @@
 const { resolve } = require('path')
+const babelConf = require('./babel.config.js')
 
 module.exports = {
 
@@ -13,12 +14,5 @@ module.exports = {
 		'Firefox ESR',
 		'not ie < 9'
 	],
-	babelOptions: {
-		"presets": ["react", "es2015", "stage-0"],
-		"plugins": [
-				["transform-decorators-legacy"],
-				["add-module-exports"]
-		]
-	}
-
+	babelOptions: babelConf
 }
