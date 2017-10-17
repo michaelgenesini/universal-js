@@ -16,6 +16,8 @@ const {
 	babelOptions
 } = options
 
+const PROD = process.env.NODE_ENV === 'production'
+
 // Cache vendor && client javascript on CDN...
 const vendor = [
   'react',
@@ -42,8 +44,8 @@ module.exports = new Config().extend({
 		vendor
 	},
 	output: {
-		filename: process.env.production ? '[name]_[chunkhash].js' : '[name].js',
-		chunkFilename: process.env.production ? '[name]_[chunkhash].js' : '[name].js',
+		filename: PROD ? '[name]_[chunkhash].js' : '[name].js',
+		chunkFilename: PROD ? '[name]_[chunkhash].js' : '[name].js',
 		path: dist,
 		publicPath: '/static/'
 	},
@@ -63,14 +65,14 @@ module.exports = new Config().extend({
 		]
 	},
 	plugins: [
-		...(process.env.production ? [
+		...(PROD ? [
 			new webpack.optimize.CommonsChunkPlugin({
 				names: ['vendor'],
 				minChunks: Infinity
 			}),
 			new AssetsPlugin({ path: options.public, filename: 'assets.json' })
 		] : []),
-		new webpack.optimize.MinChunkSizePlugin({ minChunkSize: process.env.production ? 5000 : 10 }),
+		new webpack.optimize.MinChunkSizePlugin({ minChunkSize: PROD ? 5000 : 10 }),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
@@ -80,5 +82,5 @@ module.exports = new Config().extend({
 			'process.env.NODE_ENV': JSON.stringify('development')
 		})
 	],
-	devtool: process.env.production ? 'source-map' : 'cheap-module-source-map'
+	devtool: PROD ? 'source-map' : 'cheap-module-source-map'
 })

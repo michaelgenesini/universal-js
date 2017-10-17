@@ -1,7 +1,14 @@
+import { join } from 'path'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StaticRouter } from 'react-router'
 import { renderToString } from 'react-dom/server'
+
+// Configuration
+const options = require('../../config/config')
+const {
+	dist
+} = options
 
 import AppContainer from '../universal/routes'
 
@@ -32,27 +39,27 @@ export default class Html extends Component {
         } = assets || {}
 
         const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store)}`
-        // const Layout = PROD ? require( '../../build/prerender.js') : () => {}
+        const Layout = PROD ? require( join(dist, 'prerender.js') ) : () => <AppContainer />
 
         const root = renderToString(
             <StaticRouter location={url} context={context}>
-                <AppContainer isServer={true} />
+                <Layout />
             </StaticRouter>
         )
 
         return (
             <html>
                 <head>
-                <meta charSet="utf-8"/>
-                <title>{title}</title>
-                { PROD && <link rel="stylesheet" href="/static/prerender.css" type="text/css" /> }
+                    <meta charSet="utf-8"/>
+                    <title>{title}</title>
+                    { PROD && <link rel="stylesheet" href="/static/prerender.css" type="text/css" /> }
                 </head>
                 <body>
-                <script dangerouslySetInnerHTML={{ __html: initialState }} />
-                <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div>
-                { null && PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
-                <script src={ PROD ? vendor.js : '/static/vendor.js' }/>
-                <script src={ PROD ? app.js : '/static/app.js' } />
+                    <script dangerouslySetInnerHTML={{ __html: initialState }} />
+                    <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div>
+                    { PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
+                    <script src={ PROD ? vendor.js : '/static/vendor.js' }/>
+                    <script src={ PROD ? app.js : '/static/app.js' } />
                 </body>
             </html>
         )

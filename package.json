@@ -60,11 +60,15 @@
   "scripts": {
     "test": "jest --verbose --config ./config/jest.config.js",
     "test:update": "jest --updateSnapshot",
+
     "ssr:dev": "nodemon -w ./src/server ./src/server/server.babel.js",
-    "dev:analyze": "webpack-dev-server --env.analyze --config ./config/webpack.config.js",
-    "dev": "webpack-dev-server --env.development --config ./config/webpack.config.js",
-    "build": "webpack --env.production --config ./config/webpack.config.js",
+    "ssr:prod": "NODE_ENV=production node ./src/server/server.babel.js",
+
+    "build:client": "NODE_ENV=production webpack --config ./config/client.babel.js",
+    "build:server": "NODE_ENV=production webpack --config ./config/server.babel.js",
+
     "server": "serve -s dist -p 3000",
+
     "deploy": "",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

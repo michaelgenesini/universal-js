@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const asyncRoute = getComponent => {
+function asyncRoute(getComponent) {
 
   return class AsyncComponent extends Component {
 
@@ -10,8 +10,7 @@ const asyncRoute = getComponent => {
 
     componentDidMount() {
       if (this.state.Component === null) {
-
-        getComponent.then(Component => {
+        getComponent().then(Component => {
           this.setState({ Component: Component })
         })
       }
@@ -30,19 +29,8 @@ const asyncRoute = getComponent => {
   }
 }
 
-export default asyncRoute
+export const Home = asyncRoute(() => System.import('../components/Pages/Home'))
 
-// export const Home = asyncRoute(() => {
-//   console.log('Home')
-//   return System.import('../components/Pages/Home')
-// })
+export const About = asyncRoute(() => System.import('../components/Pages/About'))
 
-// export const About = asyncRoute(() => {
-//   console.log('About')
-//   return System.import('../components/Pages/About')
-// })
-
-// export const NotFound = asyncRoute(() => {
-//   console.log('NotFound')
-//   return System.import('../components/Pages/NotFound')
-// })
+export const NotFound = asyncRoute(() => System.import('../components/Pages/NotFound'))

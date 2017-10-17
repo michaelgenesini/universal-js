@@ -23,7 +23,7 @@ renderApp(App)
 
 if (module.hot) {
   module.hot.accept('./App.js', () => {
-    const nextApp = require('./App.js');
+    const nextApp = require('./App.js')
     renderApp(nextApp)
   })
 }

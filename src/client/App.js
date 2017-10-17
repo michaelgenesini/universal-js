@@ -19,7 +19,7 @@ export default class App extends Component {
     } = this.props
 
     return <BrowserRouter>
-      <AppContainer isServer={false} />
+      <AppContainer isClient={ true } />
     </BrowserRouter>
   }
 }

@@ -38,10 +38,10 @@ export const renderPage = function (req, res) {
 
     const assets = require('../../dist/assets.json')
 
-    // assets.manifest.text = fs.readFileSync(
-    //     join(__dirname, '..', '..', 'build', basename(assets.manifest.js)),
-    //     'utf-8'
-    // )
+    assets.manifest.text = fs.readFileSync(
+        join(__dirname, '..', '..', 'dist', basename(assets.manifest.js)),
+        'utf-8'
+    )
 
 
     renderApp(req.url, res, store, assets)
