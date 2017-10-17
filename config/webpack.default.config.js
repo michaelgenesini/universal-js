@@ -178,13 +178,13 @@ module.exports = new Config().merge({
 		// 	}
 		// }),
 		// Clean dist folder and exclude some files
-		// new CleanWebpackPlugin([
-		// 	dist
-		// ], {
-		// 	root: root,
-		// 	verbose: true,
-		// 	dry: false
-		// }),
+		new CleanWebpackPlugin([
+			dist
+		], {
+			root: root,
+			verbose: true,
+			dry: false
+		}),
 		// Copy all statics files to dist
 		new CopyWebpackPlugin([{
 			context: src,

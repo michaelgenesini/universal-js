@@ -14,11 +14,8 @@ class Routes extends Component {
   render () {
 
     const {
-      location,
-      isClient
+      location
     } = this.props
-
-    console.log('ROUTES: ', __CLIENT__, __PRODUCTION__, routes)
 
     return (
       <App>
