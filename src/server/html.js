@@ -47,6 +47,15 @@ export default class Html extends Component {
             </StaticRouter>
         )
 
+        const React16IE = `
+        <!-- Required for React 16+ -->
+        <!--[if IE]>
+        <script>
+        if(!('requestAnimationFrame' in window))requestAnimationFrame=function(cb){setTimeout(cb)}
+        </script>
+        <![endif]-->
+        `
+
         return (
             <html>
                 <head>
@@ -60,6 +69,7 @@ export default class Html extends Component {
                     { PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
                     <script src={ PROD ? vendor.js : '/static/vendor.js' }/>
                     <script src={ PROD ? app.js : '/static/app.js' } />
+                    { PROD && <div dangerouslySetInnerHTML={{ __html: React16IE }}/> }
                 </body>
             </html>
         )

@@ -4,6 +4,7 @@
 import * as RouteMap from '../routes/static.js'
 
 // This is used in production for code splitting via `wepback.config.server.js`
+// Check
 // import * as RouteMap from 'universal/routes/async.js';
 
 export const routes = [
