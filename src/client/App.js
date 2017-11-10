@@ -8,7 +8,7 @@ export default class App extends Component {
 
   static propTypes = {
     history: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
+    store: PropTypes.object
   }
 
   render () {
@@ -19,7 +19,7 @@ export default class App extends Component {
     } = this.props
 
     return <BrowserRouter>
-      <AppContainer />
+      <AppContainer { ...this.props } />
     </BrowserRouter>
   }
 }

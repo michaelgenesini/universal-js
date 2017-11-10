@@ -5,17 +5,15 @@ import Navigation from '../../components/Layout/Navigation'
 
 class App extends Component {
 
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  }
+  // static propTypes = {
+  //   children: PropTypes.element.isRequired
+  // }
 
-  render () {
-    return (
-      <div>
-        <Navigation />
-        { this.props.children }
-      </div>
-    )
+  render() {
+    return <div>
+      <Navigation />
+      { this.props.children }
+    </div>
   }
 
 }

@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+require('babel-polyfill')
+
 // Import babelOptions (instead of .babelrc) so we can have just one configuration file
 const { babelOptions } = require('../../config/config.js')
 
