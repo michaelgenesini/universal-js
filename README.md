@@ -22,6 +22,6 @@ npm run ssr:prod
 ```
 
 #### Credits
-Inspired on the amazing work done by [https://github.com/Alex-ray](https://github.com/Alex-ray) with [https://github.com/Alex-ray/v2-universal-js-hmr-ssr-react-redux](https://github.com/Alex-ray/v2-universal-js-hmr-ssr-react-redux)
+Inspired by the amazing work done by [https://github.com/Alex-ray](https://github.com/Alex-ray) with [https://github.com/Alex-ray/v2-universal-js-hmr-ssr-react-redux](https://github.com/Alex-ray/v2-universal-js-hmr-ssr-react-redux)
 
 
