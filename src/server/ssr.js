@@ -18,62 +18,49 @@ import { routes } from '../universal/routes/Routes'
 // Components
 import Html from './html.js'
 
-function renderApp(req, res, store, assets) {
+async function getStore(url) {
+    let lastRoute = routes[routes.length - 1]
+    let componentProps = ['fetchData']
+    // Get the route I need
+    let route = routes.reduce((props, route) => route.path === url ? { component: route.component } : props , { component: lastRoute.component })
+    // Check if this route has one of the componentProps methods
+    componentProps.forEach(componentProp => {
+        if (route.component[componentProp]) {
+            route[componentProp] = route.component[componentProp]
+        }
+    })
+    // Manage every single componentProps method
+    if (route.fetchData) {
+        // Call the static method to get that component data and pass down as store
+        return route.fetchData()
+    }else{
+        return Promise.resolve(null)
+    }
+}
+
+function renderApp(req, res, assets) {
     const url = req.url
     const context = {}
-
-    let getPropsFromRoute = (routes, componentProps) => {
-        let props = {};
-        let lastRoute = routes[routes.length - 1];
-        routes.reduceRight((prevRoute, currRoute) => {
-        componentProps.forEach(componentProp => {
-            if (!props[componentProp] && currRoute.component[componentProp]) {
-            props[componentProp] = currRoute.component[componentProp];
-            }
-        });
-        }, lastRoute);
-        return props;
-    };
-
-    let routeProps = getPropsFromRoute(routes, ['fetchData'])
-    if (routeProps.fetchData) {
-        routeProps.fetchData().then(data => {
-
-            const store = data
-
+    getStore(url)
+        .then(store => {
             // SEND RESPONSE BACK
             const html = renderToString(
                 <Html
                     title='💥'
-                    store={store}
                     url={url}
+                    store={store}
                     context={context}
                     assets={assets} />
                 )
-
             res.send('<!DOCTYPE html>'+html)
+        })
+        .catch(error => { console.log(error); res.status(500).send(error) })
 
-
-
-        }).catch(error => console.log('Error: ', error))
-    }else{
-        // SEND RESPONSE BACK
-        const html = renderToString(
-            <Html
-                title='💥'
-                url={url}
-                context={context}
-                assets={assets} />
-            )
-
-        res.send('<!DOCTYPE html>'+html)
-    }
 }
 
 export const renderPage = function (req, res) {
     // const history = createHistory()
     // const store = createStore(history)
-    const store = null
 
     const assets = require('../../dist/assets.json')
 
@@ -82,14 +69,12 @@ export const renderPage = function (req, res) {
         'utf-8'
     )
 
-
-    renderApp(req, res, store, assets)
+    renderApp(req, res, assets)
 }
 
 export const renderDevPage = function (req, res) {
 
-    const store = DATA
-    renderApp(req, res, store)
+    renderApp(req, res)
 }
 
 export default renderPage

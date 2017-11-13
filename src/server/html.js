@@ -40,7 +40,9 @@ export default class Html extends Component {
 
         const initialState = `window.__INITIAL_STATE__ = ${JSON.stringify(store)}`
 
-        const Layout = PROD ? require( join(dist, 'prerender.js') ) : () => <AppContainer store={ store } />
+        // DO NOT REMOVE COMMENT: this make every call
+        // const Layout = PROD ? require( join(dist, 'prerender.js') ) : () => <AppContainer store={ store } />
+        const Layout = () => <AppContainer store={ store } />
 
         const root = renderToString(<StaticRouter location={url} context={context}>
             <Layout />
@@ -67,7 +69,7 @@ export default class Html extends Component {
 
                     <div id="root" dangerouslySetInnerHTML={{ __html: root }}></div>
 
-                    { PROD && <script dangerouslySetInnerHTML={{ __html: manifest.text }}/> }
+                    { PROD && <script dangerouslySetInnerHTML={{ __html: manifest ? manifest.text : null }}/> }
                     <script src={ PROD ? vendor.js : '/static/vendor.js' }/>
                     <script src={ PROD ? app.js : '/static/app.js' } />
                     { PROD && <div dangerouslySetInnerHTML={{ __html: React16IE }}/> }
