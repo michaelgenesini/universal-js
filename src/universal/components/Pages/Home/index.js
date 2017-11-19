@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import fetchData from '../../../libs/API'
+import { API, fetchData } from '../../../libs/API'
 
 export default class Home extends Component {
 
   static async fetchData() {
-    console.log('fetchData called')
-    return await fetchData()
+    console.log('fetchData called: ', API.beers)
+    return await fetchData(API.beers)
   }
 
   constructor(props) {
@@ -19,12 +19,14 @@ export default class Home extends Component {
   componentDidMount() {
     if(!this.hasStore) {
       console.log('CALL API FROM CLIENT')
+      let self = this
       this.constructor.fetchData().then(data => {
-        this.hasStore = true
-        this.setState({
-          beers: data.data
+        self.hasStore = true
+        self.setState({
+          beers: data
         })
       })
+      .catch(console.log)
     }
   }
 
